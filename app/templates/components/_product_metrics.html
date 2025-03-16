@@ -1,0 +1,59 @@
+<div class="card mt-4">
+  <div class="card-body">
+    <div class="row">
+
+      
+      <div class="col-md-4">
+        <div class="card bg-primary text-white shadow">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-box"></i> Recursos em Estoque</h5>
+            <p class="card-text font-weight-bold"><i class="bi bi-truck"></i> Veículos: <span class="badge bg-light text-dark">{{ product_metrics.vehicles_total_quantity }}</span></p>
+            <p class="card-text font-weight-bold"><i class="bi bi-tools"></i> Equipamentos: <span class="badge bg-light text-dark">{{ product_metrics.equipment_total_quantity }}</span></p>
+            <p class="card-text font-weight-bold"><i class="bi bi-shield-lock"></i> Dispositivos de Segurança: <span class="badge bg-light text-dark">{{ product_metrics.security_devices_total_quantity }}</span></p>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-md-4">
+        <div class="card bg-success text-white shadow">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-box-arrow-in-down"></i> Entradas</h5>
+            <ul class="list-group list-group-flush">
+              {% for inflow in product_metrics.recent_inflows %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  {{ inflow.product }}
+                  <span class="badge bg-success">{{ inflow.quantity }}</span>
+                </li>
+              {% empty %}
+                <li class="list-group-item text-muted">Nenhuma entrada recente</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-md-4">
+        <div class="card bg-danger text-white shadow">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-box-arrow-up"></i> Saídas</h5>
+            <ul class="list-group list-group-flush">
+              {% for outflow in product_metrics.recent_outflows %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  {{ outflow.product }}
+                  <span class="badge bg-danger">{{ outflow.quantity }}</span>
+                </li>
+              {% empty %}
+                <li class="list-group-item text-muted">Nenhuma saída recente</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
